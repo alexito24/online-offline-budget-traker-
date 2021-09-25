@@ -2,6 +2,8 @@ const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const compression = require("compression");
+const path = require("path");
+
 
 const PORT = 3000;
 
@@ -13,7 +15,8 @@ app.use(compression());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
+
 
 mongoose.connect("mongodb://localhost/budget", {
   useNewUrlParser: true,
