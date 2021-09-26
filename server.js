@@ -20,6 +20,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 mongoose.connect("mongodb://localhost/budget", {
   useNewUrlParser: true,
+  useFindAndModify: false,
+  useCreateIndex: true,
   useFindAndModify: false
 });
 
