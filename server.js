@@ -5,7 +5,7 @@ const compression = require("compression");
 const path = require("path");
 
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
@@ -17,6 +17,8 @@ app.use(express.json());
 
 app.use(express.static(path.join(__dirname, "public")));
 
+// routes
+app.use(require("./routes/api.js"));
 
 mongoose.connect("mongodb://localhost/budget", {
   useNewUrlParser: true,
@@ -25,8 +27,6 @@ mongoose.connect("mongodb://localhost/budget", {
   useFindAndModify: false
 });
 
-// routes
-app.use(require("./routes/api.js"));
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
